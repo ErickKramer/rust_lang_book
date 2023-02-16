@@ -6,6 +6,26 @@ struct Rectangle {
     height: u32,
 }
 
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width >= other.width && self.height >= other.height
+    }
+
+    // Associated function that is not a method!
+    // Self is an alias for the type that appears after the impl keyword
+    // An associated method is called by using the :: syntax
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
+}
+
 fn main() {
     let width1 = 30;
     let height1 = 50;
@@ -30,6 +50,27 @@ fn main() {
 
     println!("Rect1 is {:?}", rect1);
     dbg!(&rect1);
+
+    println!(
+        "--> The area of the rectangle is {} square pixels.",
+        rect1.area()
+    );
+
+    // --- Check if rectangles fit
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
+    };
+
+    println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
+    println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+
+    let square = Rectangle::square(3);
+    println!("Square {:?}", square);
 }
 
 fn area_noob(width: u32, height: u32) -> u32 {
