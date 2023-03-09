@@ -44,12 +44,12 @@ fn main() {
     let random_values = vec![1, 2, 3, 34, 2, 1];
     let median = compute_median(&random_values);
     println!("{:?}", random_values);
-    println!("{:?}", median.unwrap());
+    println!("{}", median.unwrap());
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::compute_mode;
+    use super::compute_mode;
 
     use super::compute_median;
 
